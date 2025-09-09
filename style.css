@@ -1,0 +1,19 @@
+body {
+    background-color: rgb(253, 234, 210);
+}
+
+.bar-background {
+    background-color: bisque;
+}
+
+.separator-light {
+    background-color: #f1dfad;
+}
+
+.separator-dark {
+    background-color: #c6b484;
+}
+
+.credits-background {
+    background-color: rgba(43, 29, 0, 0.708);
+}
