@@ -31,26 +31,38 @@
 
     <!-- First Collapsible Section (Classes) -->
     <section class="m-2 container">
-      <details>
+      <details class="">
         <summary>Classes</summary>
-        <p>Find all information on classes that you may be interested in playing that fit DnD 5e. Select a class here</p>
-        <select name="classes" id="classes">
-          <option value="nullClass">Choose One</option>
-          <option value="artificer">Artificer</option>
-          <option value="barbarian">Barbarian</option>
-          <option value="bard">Bard</option>
-          <option value="cleric">Cleric</option>
-          <option value="druid">Druid</option>
-          <option value="fighter">Fighter</option>
-          <option value="monk">Monk</option>
-          <option value="paladin">Paladin</option>
-          <option value="ranger">Ranger</option>
-          <option value="rogue">Rogue</option>
-          <option value="sorcerer">Sorcerer</option>
-          <option value="warlock">Warlock</option>
-          <option value="wizard">Wizard</option>
-        </select>
-        <button class="btn btn-danger">Search</button>
+        <div>
+          <p>
+            Find all information on classes that you may be interested in playing
+            that fit DnD 5e. Select a class here
+          </p>
+          <select name="classes" id="classSelect">
+            <option value="nullClass">Choose One</option>
+            <option value="barbarian">Barbarian</option>
+            <option value="bard">Bard</option>
+            <option value="cleric">Cleric</option>
+            <option value="druid">Druid</option>
+            <option value="fighter">Fighter</option>
+            <option value="monk">Monk</option>
+            <option value="paladin">Paladin</option>
+            <option value="ranger">Ranger</option>
+            <option value="rogue">Rogue</option>
+            <option value="sorcerer">Sorcerer</option>
+            <option value="warlock">Warlock</option>
+            <option value="wizard">Wizard</option>
+          </select>
+          <button id="classButton" class="btn btn-danger">Search</button>
+        </div>
+        <br>
+        <div class="nav nav-tabs">
+          <button id="classSummaryButton" class="nav-link inactive-tab border border-secondary border-bottom-0 text-danger">Summary</button>
+          <button id="classSkillButton" class="nav-link inactive-tab border-secondary border-bottom-0 text-danger">Starting Skills</button>
+          <button id="classEquipButton" class="nav-link inactive-tab border-secondary border-bottom-0 text-danger">Starting Equipment</button>
+          <button id="classMultiButton" class="nav-link inactive-tab border-secondary border-bottom-0 text-danger">Multi-classing</button>
+        </div>
+        <p id="classDescriptionBox">Select a class to start!</p>
       </details>
     </section>
 
@@ -58,8 +70,11 @@
     <section class="m-2 container">
       <details class="collapsible">
         <summary>Races</summary>
-        <p>Need any information on races you can play as? Don't worry, all you need is right here. Select a Race here.</p>
-        <select name="races" id="races">
+        <p>
+          Need any information on races you can play as? Don't worry, all you
+          need is right here. Select a Race here.
+        </p>
+        <select name="races" id="raceSelect">
           <option value="nullRace">Choose One</option>
           <option value="dragonborn">Dragonborn</option>
           <option value="dwarf">Dwarf</option>
@@ -71,14 +86,15 @@
           <option value="human">Human</option>
           <option value="tiefling">Tiefling</option>
         </select>
-        <button class="btn btn-danger">Search</button>
+        <button class="btn btn-danger" id="raceButton">Search</button>
       </details>
     </section>
-    
+
     <!-- Collapsible 3 (Feats) -->
     <!-- Collapsible 4 (Backgrounds) -->
 
-
+    <!-- Test Cards -->
+  
     <script src="helpers-full.js"></script>
     <script src="script.js"></script>
   </body>

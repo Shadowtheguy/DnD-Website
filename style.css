@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(253, 234, 210);
+    background-color: #fdead2;
 }
 
 .bar-background {
@@ -16,4 +16,12 @@ body {
 
 .credits-background {
     background-color: rgba(43, 29, 0, 0.708);
+}
+
+.selected-tab {
+    background-color: #c6c2b6;
+}
+
+.inactive-tab { 
+    background-color: #f8eaed;
 }
