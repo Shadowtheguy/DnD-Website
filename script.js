@@ -13,6 +13,8 @@ const classMultiButton = document.getElementById("classMultiButton");
 
 const classDescriptionBox = document.getElementById("classDescriptionBox");
 
+const noSelectionError = "You haven't Chosen Yet!";
+
 // Changing Variables
 let classValue = "";
 let currentClass = "";
@@ -28,13 +30,17 @@ i = 0;
 
 // Pojo Variables
 let dndClassDescription = "";
+
 let dndRaceDescription = "";
 
 // Fill in the blank Variables
-let classSummaryTemplate = "summary checked";
-let classSkillTemplate = "skill checked";
-let classEquipTemplate = "equipment checked";
-let classMultiTemplate = "Multiclassing Checked";
+let classSummaryTemplate = "";
+
+let classSkillTemplate = "";
+
+let classEquipTemplate = "";
+
+let classMultiTemplate = "";
 
 //* Fetch Functions
 
@@ -53,6 +59,7 @@ function fetchDndClasses() {
     .then(function (result) {
       console.log(result);
       dndClassDescription = result;
+      //! Make a function to update all the variables
     })
     .catch((error) => console.error(error));
 }
@@ -68,7 +75,7 @@ function fetchDndRaces() {
     .then((response) => response.json())
     .then(function (result) {
       console.log(result);
-      dndClassDescription = result;
+      dndRaceDescription = result;
     })
     .catch((error) => console.error(error));
 }
@@ -79,9 +86,20 @@ function fetchDndRaces() {
 classButton.addEventListener("click", function (event) {
   classValue = selectClass.value;
   currentClass = classValue;
-  fetchDndClasses();
-  classDescriptionBox.textContent = classSummaryTemplate;
-  classSummaryButton.classList.replace("inactive-tab", "selected-tab");
+
+  if (classValue == "nullClass") {
+    classDescriptionBox.textContent = noSelectionError;
+  } else {
+    fetchDndClasses();
+    classDescriptionBox.textContent = classSummaryTemplate;
+    for (i = 0; i < currentTab.length; i++) {
+      currentTab[i].className = currentTab[i].className.replace(
+        "selected-tab",
+        "inactive-tab"
+      );
+    }
+    classSummaryButton.classList.replace("inactive-tab", "selected-tab");
+  }
 });
 
 raceButton.addEventListener("click", function (event) {
@@ -90,34 +108,33 @@ raceButton.addEventListener("click", function (event) {
   fetchDndRaces();
 });
 
-
 //Tab Functions
 
 classSummaryButton.addEventListener("click", function (event) {
   classDescriptionBox.textContent = classSummaryTemplate;
   currentTab = document.getElementsByClassName("selected-tab");
-  
+
   for (i = 0; i < currentTab.length; i++) {
     currentTab[i].className = currentTab[i].className.replace(
       "selected-tab",
       "inactive-tab"
     );
   }
-  
+
   classSummaryButton.classList.replace("inactive-tab", "selected-tab");
 });
 
 classSkillButton.addEventListener("click", function (event) {
   classDescriptionBox.textContent = classSkillTemplate;
   currentTab = document.getElementsByClassName("selected-tab");
-  
+
   for (i = 0; i < currentTab.length; i++) {
     currentTab[i].className = currentTab[i].className.replace(
       "selected-tab",
       "inactive-tab"
     );
   }
-  
+
   classSkillButton.classList.replace("inactive-tab", "selected-tab");
 });
 

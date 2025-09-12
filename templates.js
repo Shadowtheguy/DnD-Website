@@ -1,1 +1,0 @@
-//* Where all the templates for the info page will be
