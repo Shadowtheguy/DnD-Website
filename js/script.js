@@ -1,47 +1,3 @@
-//* Variables
-
-//Constant Variables
-const raceButton = document.getElementById("raceButton");
-const selectRace = document.getElementById("raceSelect");
-
-const classButton = document.getElementById("classButton");
-const selectClass = document.getElementById("classSelect");
-const classSummaryButton = document.getElementById("classSummaryButton");
-const classSkillButton = document.getElementById("classSkillButton");
-const classEquipButton = document.getElementById("classEquipButton");
-const classMultiButton = document.getElementById("classMultiButton");
-
-const classDescriptionBox = document.getElementById("classDescriptionBox");
-
-const noSelectionError = "You haven't Chosen Yet!";
-
-// Changing Variables
-let classValue = "";
-let currentClass = "";
-
-let raceValue = "";
-let currentRace = "";
-
-let currentTab = "";
-let inactiveTabs = "";
-
-// Variable for testing the for statement
-i = 0;
-
-// Pojo Variables
-let dndClassDescription = "";
-
-let dndRaceDescription = "";
-
-// Fill in the blank Variables
-let classSummaryTemplate = "";
-
-let classSkillTemplate = "";
-
-let classEquipTemplate = "";
-
-let classMultiTemplate = "";
-
 //* Fetch Functions
 
 function fetchDndClasses() {
@@ -59,7 +15,7 @@ function fetchDndClasses() {
     .then(function (result) {
       console.log(result);
       dndClassDescription = result;
-      //! Make a function to update all the variables
+      classSetup();
     })
     .catch((error) => console.error(error));
 }
@@ -82,7 +38,118 @@ function fetchDndRaces() {
 
 //* Event Functions
 
+// Startup
+function classSetup() {
+  //Checking Class for description.
+  if (currentClass == "barbarian") {
+    classSummaryTemplate = barbarianSummary;
+  }
+
+  if (currentClass == "bard") {
+    classSummaryTemplate = bardSummary;
+  }
+
+  if (currentClass == "cleric") {
+    classSummaryTemplate = clericSummary;
+  }
+
+  if (currentClass == "druid") {
+    classSummaryTemplate = druidSummary;
+  }
+
+  if (currentClass == "fighter") {
+    classSummaryTemplate = fighterSummary;
+  }
+
+  if (currentClass == "monk") {
+    classSummaryTemplate = monkSummary;
+  }
+
+  if (currentClass == "paladin") {
+    classSummaryTemplate = paladinSummary;
+  }
+
+  if (currentClass == "ranger") {
+    classSummaryTemplate = rangerSummary;
+  }
+
+  if (currentClass == "rogue") {
+    classSummaryTemplate = rogueSummary;
+  }
+
+  if (currentClass == "sorcerer") {
+    classSummaryTemplate = sorcererSummary;
+  }
+
+  if (currentClass == "warlock") {
+    classSummaryTemplate = warlockSummary;
+  }
+
+  if (currentClass == "wizard") {
+    classSummaryTemplate = wizardSummary;
+  }
+
+  //Starting Setup
+  classDescriptionBox.textContent = classSummaryTemplate;
+  for (i = 0; i < currentTab.length; i++) {
+    currentTab[i].className = currentTab[i].className.replace(
+      "selected-tab",
+      "inactive-tab"
+    );
+  }
+  classSummaryButton.classList.replace("inactive-tab", "selected-tab");
+
+  //*Stating variables with JSON Data
+  //Skill variables
+  skillList = dndClassDescription.proficiency_choices[0].desc;
+
+  equipProficiencies =
+    dndClassDescription.proficiencies[0].name +
+    " , " +
+    dndClassDescription.proficiencies[1].name +
+    " , " +
+    dndClassDescription.proficiencies[2].name +
+    " , " +
+    dndClassDescription.proficiencies[3].name;
+
+  classSavingThrows =
+    dndClassDescription.saving_throws[0].name +
+    " and " +
+    dndClassDescription.saving_throws[1].name;
+
+  //Equip Variables
+  //classStartingEquip =
+    //dndClassDescription.starting_equipment[0].equipment.name +
+    //" and " +
+    //dndRaceDescription.starting_equipment[1].equipment.name;
+
+  //classEquipChoices =
+    //dndClassDescription.starting_equipment_options[0].desc +
+    //" and " +
+    //dndClassDescription.starting_equipment_options[1].desc;
+  //Completing other templates.
+  classSkillTemplate =
+    skillPart1 +
+    currentClass +
+    skillPart2 +
+    skillList +
+    skillPart3 +
+    equipProficiencies +
+    skillPart4 +
+    classSavingThrows;
+
+  classEquipTemplate =
+    equipPart1 +
+    classStartingEquip +
+    equipPart2 +
+    classEquipChoices +
+    equipPart3;
+
+  classMultiTemplate = "";
+}
+
 //Adding Descriptions
+
 classButton.addEventListener("click", function (event) {
   classValue = selectClass.value;
   currentClass = classValue;
@@ -91,15 +158,8 @@ classButton.addEventListener("click", function (event) {
     classDescriptionBox.textContent = noSelectionError;
   } else {
     fetchDndClasses();
-    classDescriptionBox.textContent = classSummaryTemplate;
-    for (i = 0; i < currentTab.length; i++) {
-      currentTab[i].className = currentTab[i].className.replace(
-        "selected-tab",
-        "inactive-tab"
-      );
-    }
-    classSummaryButton.classList.replace("inactive-tab", "selected-tab");
   }
+  classSummaryButton.classList.replace("inactive-tab", "selected-tab");
 });
 
 raceButton.addEventListener("click", function (event) {
