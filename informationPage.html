@@ -35,8 +35,8 @@
         <summary>Classes</summary>
         <div>
           <p>
-            Find all information on classes that you may be interested in playing
-            that fit DnD 5e. Select a class here
+            Find all information on classes that you may be interested in
+            playing that fit DnD 5e. Select a class here
           </p>
           <select name="classes" id="classSelect">
             <option value="nullClass">Choose One</option>
@@ -55,12 +55,32 @@
           </select>
           <button id="classButton" class="btn btn-danger">Search</button>
         </div>
-        <br>
+        <br />
         <div class="nav nav-tabs">
-          <button id="classSummaryButton" class="nav-link inactive-tab border border-secondary border-bottom-0 text-danger">Summary</button>
-          <button id="classSkillButton" class="nav-link inactive-tab border-secondary border-bottom-0 text-danger">Starting Skills</button>
-          <button id="classEquipButton" class="nav-link inactive-tab border-secondary border-bottom-0 text-danger">Starting Equipment</button>
-          <button id="classMultiButton" class="nav-link inactive-tab border-secondary border-bottom-0 text-danger">Multi-classing</button>
+          <button
+            id="classSummaryButton"
+            class="nav-link inactive-tab border border-secondary border-bottom-0 text-danger"
+          >
+            Summary
+          </button>
+          <button
+            id="classSkillButton"
+            class="nav-link inactive-tab border-secondary border-bottom-0 text-danger"
+          >
+            Starting Skills
+          </button>
+          <button
+            id="classEquipButton"
+            class="nav-link inactive-tab border-secondary border-bottom-0 text-danger"
+          >
+            Starting Equipment
+          </button>
+          <button
+            id="classMultiButton"
+            class="nav-link inactive-tab border-secondary border-bottom-0 text-danger"
+          >
+            Multi-classing
+          </button>
         </div>
         <p id="classDescriptionBox">Select a class to start!</p>
       </details>
@@ -70,22 +90,46 @@
     <section class="m-2 container">
       <details class="collapsible">
         <summary>Races</summary>
-        <p>
-          Need any information on races you can play as? Don't worry, all you
-          need is right here. Select a Race here.
-        </p>
-        <select name="races" id="raceSelect">
-          <option value="nullRace">Choose One</option>
-          <option value="dragonborn">Dragonborn</option>
-          <option value="dwarf">Dwarf</option>
-          <option value="elf">Elf</option>
-          <option value="gnome">Gnome</option>
-          <option value="halfling">Halfling</option>
-          <option value="half-elf">Half-Elf</option>
-          <option value="half-orc">Half-Orc</option>
-          <option value="human">Human</option>
-          <option value="tiefling">Tiefling</option>
-        </select>
+        <div>
+          <p>
+            Need any information on races you can play as? Don't worry, all you
+            need is right here. Select a Race here.
+          </p>
+          <select name="races" id="raceSelect">
+            <option value="nullRace">Choose One</option>
+            <option value="dragonborn">Dragonborn</option>
+            <option value="dwarf">Dwarf</option>
+            <option value="elf">Elf</option>
+            <option value="gnome">Gnome</option>
+            <option value="halfling">Halfling</option>
+            <option value="half-elf">Half-Elf</option>
+            <option value="half-orc">Half-Orc</option>
+            <option value="human">Human</option>
+            <option value="tiefling">Tiefling</option>
+          </select>
+        </div>
+        <br />
+        <div class="nav nav-tabs">
+          <button
+            id="raceDescriptionButton"
+            class="nav-link inactive-tab border border-secondary border-bottom-0 text-danger"
+          >
+            Description
+          </button>
+          <button
+            id="raceAbilityButton"
+            class="nav-link inactive-tab border-secondary border-bottom-0 text-danger"
+          >
+            Starting Skills
+          </button>
+          <button
+            id="raceStatsButton"
+            class="nav-link inactive-tab border-secondary border-bottom-0 text-danger"
+          >
+            Stats and Proficiencies
+          </button>
+        </div>
+        <p id="raceDescriptionBox">Select a race to start!</p>
         <button class="btn btn-danger" id="raceButton">Search</button>
       </details>
     </section>
@@ -94,10 +138,11 @@
     <!-- Collapsible 4 (Backgrounds) -->
 
     <!-- Test Cards -->
-  
+
     <script src="js/helpers-full.js"></script>
     <script src="js/insert-descriptions.js"></script>
     <script src="js/variables.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/classFunctions.js"></script>
+    <script src="js/raceFunctions.js"></script>
   </body>
 </html>

@@ -20,22 +20,6 @@ function fetchDndClasses() {
     .catch((error) => console.error(error));
 }
 
-function fetchDndRaces() {
-  console.log("Fetching Races for DND 5e");
-  const requestOptions = {
-    method: "GET",
-    redirect: "follow",
-  };
-
-  fetch("https://www.dnd5eapi.co/api/2014/races/" + currentRace, requestOptions)
-    .then((response) => response.json())
-    .then(function (result) {
-      console.log(result);
-      dndRaceDescription = result;
-    })
-    .catch((error) => console.error(error));
-}
-
 //* Event Functions
 
 // Startup
@@ -105,11 +89,11 @@ function classSetup() {
 
   equipProficiencies =
     dndClassDescription.proficiencies[0].name +
-    " , " +
+    ", " +
     dndClassDescription.proficiencies[1].name +
-    " , " +
+    ", " +
     dndClassDescription.proficiencies[2].name +
-    " , " +
+    ", " +
     dndClassDescription.proficiencies[3].name;
 
   classSavingThrows =
@@ -118,15 +102,41 @@ function classSetup() {
     dndClassDescription.saving_throws[1].name;
 
   //Equip Variables
+  //! Need to figure out how to get it to not return an error when there are less options that I call for, so I can call for more for things that have more
+
+//?if (dndClassDescription.starting_equipment[1] !== undefined) {
+//?classStartingEquip =
+//?dndClassDescription.starting_equipment[0].equipment.name +
+//?" and " +
+//?dndRaceDescription.starting_equipment[1].equipment.name;
+//?}
+
   //classStartingEquip =
-    //dndClassDescription.starting_equipment[0].equipment.name +
-    //" and " +
-    //dndRaceDescription.starting_equipment[1].equipment.name;
+  //dndClassDescription.starting_equipment[0].equipment.name +
+  //" and " +
+  //dndRaceDescription.starting_equipment[1].equipment.name;
 
   //classEquipChoices =
-    //dndClassDescription.starting_equipment_options[0].desc +
-    //" and " +
-    //dndClassDescription.starting_equipment_options[1].desc;
+  //dndClassDescription.starting_equipment_options[0].desc +
+  //" and " +
+  //dndClassDescription.starting_equipment_options[1].desc;
+
+  //MultiClassing Variables
+
+  multiclassAbilityScore =
+    dndClassDescription.multi_classing.prerequisites[0].ability_score.name;
+
+  multiclassScoreNumber =
+    dndClassDescription.multi_classing.prerequisites[0].minimum_score;
+
+  multiclassProficiencies =
+    dndClassDescription.multi_classing.proficiencies[0].name +
+    ", " +
+    dndClassDescription.multi_classing.proficiencies[1].name +
+    ", and " +
+    dndClassDescription.multi_classing.proficiencies[2].name +
+    ".";
+
   //Completing other templates.
   classSkillTemplate =
     skillPart1 +
@@ -138,14 +148,20 @@ function classSetup() {
     skillPart4 +
     classSavingThrows;
 
-  classEquipTemplate =
-    equipPart1 +
-    classStartingEquip +
-    equipPart2 +
-    classEquipChoices +
-    equipPart3;
+  //classEquipTemplate =
+  //equipPart1 +
+  //classStartingEquip +
+  //equipPart2 +
+  //classEquipChoices +
+  //equipPart3;
 
-  classMultiTemplate = "";
+  classMultiTemplate =
+    multiPart1 +
+    multiclassAbilityScore +
+    multiPart2 +
+    multiclassScoreNumber +
+    multiPart3 +
+    multiclassProficiencies;
 }
 
 //Adding Descriptions
@@ -160,12 +176,6 @@ classButton.addEventListener("click", function (event) {
     fetchDndClasses();
   }
   classSummaryButton.classList.replace("inactive-tab", "selected-tab");
-});
-
-raceButton.addEventListener("click", function (event) {
-  raceValue = selectRace.value;
-  currentRace = raceValue;
-  fetchDndRaces();
 });
 
 //Tab Functions

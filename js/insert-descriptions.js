@@ -54,8 +54,14 @@ let skillPart3 = ". You also become proficient in ";
 let skillPart4 = " and the saving throws for ";
 
 // Class Equipment Strings
-let equipPart1 = "For sure, you'll start out with "
-let equipPart2 = ", but then you'll have to choose between two for the rest. Your choices are "
-let equipPart3 = ". After that, you're ready to go!"
+let equipPart1 = "For sure, you'll start out with ";
+let equipPart2 =
+  ", but then you'll have to choose between two for the rest. Your choices are ";
+let equipPart3 = ". After that, you're ready to go!";
 
 // Class Multiclass requirements
+let multiPart1 =
+  "To multi-class is to add levels from another class that you don't already have to your own. To do that, you have to meet a requirement, which for this class is a ";
+let multiPart2 = " score of at least ";
+let multiPart3 =
+  ". Doing that, you get fewer benefits than starting out in the class, so you don't get any starting equipment, and you only gain proficiency with ";

@@ -3,6 +3,11 @@
 //Constant Variables
 const raceButton = document.getElementById("raceButton");
 const selectRace = document.getElementById("raceSelect");
+const raceDescritionButton = document.getElementById("raceDescriptionButton");
+const raceAbilityButton = document.getElementById("raceAbilityButton");
+const raceStatsButton = document.getElementById("raceStatsButton");
+
+const raceDescriptionBox = document.getElementById("raceDescriptionBox");
 
 const classButton = document.getElementById("classButton");
 const selectClass = document.getElementById("classSelect");
@@ -25,7 +30,7 @@ let currentRace = "";
 let currentTab = "";
 let inactiveTabs = "";
 
-// Variable for testing the for statement
+// Variable for the for statement
 i = 0;
 
 // Pojo Variables
