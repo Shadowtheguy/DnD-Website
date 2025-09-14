@@ -75,13 +75,6 @@ function classSetup() {
 
   //Starting Setup
   classDescriptionBox.textContent = classSummaryTemplate;
-  for (i = 0; i < currentTab.length; i++) {
-    currentTab[i].className = currentTab[i].className.replace(
-      "selected-tab",
-      "inactive-tab"
-    );
-  }
-  classSummaryButton.classList.replace("inactive-tab", "selected-tab");
 
   //*Stating variables with JSON Data
   //Skill variables
@@ -102,24 +95,51 @@ function classSetup() {
     dndClassDescription.saving_throws[1].name;
 
   //Equip Variables
-  //! Need to figure out how to get it to not return an error when there are less options that I call for, so I can call for more for things that have more
 
-//?if (dndClassDescription.starting_equipment[1] !== undefined) {
-//?classStartingEquip =
-//?dndClassDescription.starting_equipment[0].equipment.name +
-//?" and " +
-//?dndRaceDescription.starting_equipment[1].equipment.name;
-//?}
+  if (dndClassDescription.starting_equipment[0] == undefined) {
+    classStartingEquip = "Temp";
+  }
 
-  //classStartingEquip =
-  //dndClassDescription.starting_equipment[0].equipment.name +
-  //" and " +
-  //dndRaceDescription.starting_equipment[1].equipment.name;
+  if (dndClassDescription.starting_equipment[0] !== undefined) {
+    classStartingEquip =
+      dndClassDescription.starting_equipment[0]?.equipment.name;
+  }
 
-  //classEquipChoices =
-  //dndClassDescription.starting_equipment_options[0].desc +
-  //" and " +
-  //dndClassDescription.starting_equipment_options[1].desc;
+  if (dndClassDescription.starting_equipment[1] !== undefined) {
+    classStartingEquip =
+      classStartingEquip +
+      " and " +
+      dndClassDescription.starting_equipment[1].equipment.name;
+  }
+
+  if (dndClassDescription.starting_equipment[2] !== undefined) {
+    classStartingEquip =
+      classStartingEquip +
+      " and " +
+      dndClassDescription.starting_equipment[2]?.equipment.name;
+  }
+
+  if (dndClassDescription.starting_equipment_options[0] == undefined) {
+    classEquipChoices = "Temp";
+  }
+
+  if (dndClassDescription.starting_equipment_options[0] !== undefined) {
+    classEquipChoices = dndClassDescription.starting_equipment_options[0].desc;
+  }
+
+  if (dndClassDescription.starting_equipment_options[1] !== undefined) {
+    classEquipChoices =
+      classEquipChoices +
+      " and " +
+      dndClassDescription.starting_equipment_options[1].desc;
+  }
+
+  if (dndClassDescription.starting_equipment_options[2] !== undefined) {
+    classEquipChoices =
+      classEquipChoices +
+      " and " +
+      dndClassDescription.starting_equipment_options[2].desc;
+  }
 
   //MultiClassing Variables
 
@@ -129,13 +149,28 @@ function classSetup() {
   multiclassScoreNumber =
     dndClassDescription.multi_classing.prerequisites[0].minimum_score;
 
-  multiclassProficiencies =
-    dndClassDescription.multi_classing.proficiencies[0].name +
-    ", " +
-    dndClassDescription.multi_classing.proficiencies[1].name +
-    ", and " +
-    dndClassDescription.multi_classing.proficiencies[2].name +
-    ".";
+  if (dndClassDescription.multi_classing.proficiencies[0] == undefined) {
+    multiclassProficiencies = "Temp";
+  }
+
+  if (dndClassDescription.multi_classing.proficiencies[0] !== undefined) {
+    multiclassProficiencies =
+      dndClassDescription.multi_classing.proficiencies[0].name;
+  }
+
+  if (dndClassDescription.multi_classing.proficiencies[1] !== undefined) {
+    multiclassProficiencies =
+      multiclassProficiencies +
+      " and " +
+      dndClassDescription.multi_classing.proficiencies[1].name;
+  }
+
+  if (dndClassDescription.multi_classing.proficiencies[2] !== undefined) {
+    multiclassProficiencies =
+      multiclassProficiencies +
+      " and " +
+      dndClassDescription.multi_classing.proficiencies[2].name;
+  }
 
   //Completing other templates.
   classSkillTemplate =
@@ -148,12 +183,12 @@ function classSetup() {
     skillPart4 +
     classSavingThrows;
 
-  //classEquipTemplate =
-  //equipPart1 +
-  //classStartingEquip +
-  //equipPart2 +
-  //classEquipChoices +
-  //equipPart3;
+  classEquipTemplate =
+    equipPart1 +
+    classStartingEquip +
+    equipPart2 +
+    classEquipChoices +
+    equipPart3;
 
   classMultiTemplate =
     multiPart1 +
@@ -174,6 +209,14 @@ classButton.addEventListener("click", function (event) {
     classDescriptionBox.textContent = noSelectionError;
   } else {
     fetchDndClasses();
+  }
+  currentTab = document.getElementsByClassName("selected-tab");
+
+  for (i = 0; i < currentTab.length; i++) {
+    currentTab[i].className = currentTab[i].className.replace(
+      "selected-tab",
+      "inactive-tab"
+    );
   }
   classSummaryButton.classList.replace("inactive-tab", "selected-tab");
 });

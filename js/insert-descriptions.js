@@ -7,6 +7,12 @@ let classEquipTemplate = "";
 
 let classMultiTemplate = "";
 
+let raceDescriptionTemplate = "";
+
+let raceAbilityTemplate = "";
+
+let raceStatsTemplate = "";
+
 //* Blanks to be filled
 
 // Class Summaries
@@ -65,3 +71,13 @@ let multiPart1 =
 let multiPart2 = " score of at least ";
 let multiPart3 =
   ". Doing that, you get fewer benefits than starting out in the class, so you don't get any starting equipment, and you only gain proficiency with ";
+
+// Race Description Strings
+
+// Race Ability Strings
+
+// Race Stat Strings
+let proficiencyList = "";
+let proficiencyChoices = "";
+let languagesKnown = "";
+let statIncrease = "";
