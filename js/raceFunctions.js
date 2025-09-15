@@ -11,9 +11,10 @@ function fetchDndRaces() {
 
   fetch("https://www.dnd5eapi.co/api/2014/races/" + currentRace, requestOptions)
     .then((response) => response.json())
-    .then(function (result) {
+    .then(async function (result) {
       console.log(result);
       dndRaceDescription = result;
+      await printTraits();
       raceSetup();
     })
     .catch((error) => console.error(error));
@@ -28,7 +29,7 @@ function fetchTrait1() {
     redirect: "follow",
   };
 
-  fetch("https://www.dnd5eapi.co" + raceTrait1URL, requestOptions)
+  return fetch("https://www.dnd5eapi.co" + raceTrait1URL, requestOptions)
     .then((response) => response.json())
     .then(function (result) {
       console.log(result);
@@ -45,7 +46,7 @@ function fetchTrait2() {
     redirect: "follow",
   };
 
-  fetch("https://www.dnd5eapi.co" + raceTrait2URL, requestOptions)
+  return fetch("https://www.dnd5eapi.co" + raceTrait2URL, requestOptions)
     .then((response) => response.json())
     .then(function (result) {
       console.log(result);
@@ -62,7 +63,7 @@ function fetchTrait3() {
     redirect: "follow",
   };
 
-  fetch("https://www.dnd5eapi.co" + raceTrait3URL, requestOptions)
+  return fetch("https://www.dnd5eapi.co" + raceTrait3URL, requestOptions)
     .then((response) => response.json())
     .then(function (result) {
       console.log(result);
@@ -79,7 +80,7 @@ function fetchTrait4() {
     redirect: "follow",
   };
 
-  fetch("https://www.dnd5eapi.co" + raceTrait4URL, requestOptions)
+  return fetch("https://www.dnd5eapi.co" + raceTrait4URL, requestOptions)
     .then((response) => response.json())
     .then(function (result) {
       console.log(result);
@@ -91,33 +92,43 @@ function fetchTrait4() {
 
 //* Event Functions
 
-//Startup
-function raceSetup() {
+async function printTraits() {
+  const traitPromises = [];
+
   //* Identifying and Fetching Racial Traits
   if (dndRaceDescription.traits[0] !== undefined) {
     raceTrait1URL = dndRaceDescription.traits[0].url;
 
     fetchTrait1();
+    traitPromises.push(fetchTrait1());
   }
 
   if (dndRaceDescription.traits[1] !== undefined) {
     raceTrait2URL = dndRaceDescription.traits[1].url;
 
     fetchTrait2();
+    traitPromises.push(fetchTrait2());
   }
 
   if (dndRaceDescription.traits[2] !== undefined) {
     raceTrait3URL = dndRaceDescription.traits[2].url;
 
     fetchTrait3();
+    traitPromises.push(fetchTrait3());
   }
 
   if (dndRaceDescription.traits[3] !== undefined) {
     raceTrait4URL = dndRaceDescription.traits[3].url;
 
     fetchTrait4();
+    traitPromises.push(fetchTrait4());
   }
 
+  await Promise.all(traitPromises);
+}
+
+//Startup
+function raceSetup() {
   //* Stating Variables with JSON Data
 
   //Description Variables
@@ -210,9 +221,12 @@ function raceSetup() {
     statIncrease;
 
   raceAbilityTemplate =
-    raceTrait1Description + "/n" +
-    raceTrait2Description + "/n" +
-    raceTrait3Description + "/n" +
+    raceTrait1Description +
+    "<br><br>" +
+    raceTrait2Description +
+    "<br><br>" +
+    raceTrait3Description +
+    "<br><br>" +
     raceTrait4Description;
   //Starting Setup
   raceDescriptionBox.textContent = raceDescriptionTemplate;
@@ -255,7 +269,7 @@ raceDescriptionButton.addEventListener("click", function (event) {
 });
 
 raceAbilityButton.addEventListener("click", function (event) {
-  raceDescriptionBox.textContent = raceAbilityTemplate;
+  raceDescriptionBox.innerHTML = raceAbilityTemplate;
   currentTab = document.getElementsByClassName("selected-tab");
 
   for (i = 0; i < currentTab.length; i++) {
